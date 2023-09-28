@@ -1,0 +1,83 @@
+body {
+	--header-bg: #fff;
+
+	background-color: #d5d5d5;
+	background-image: url("/img/bg-dashboard.jpg");
+}
+
+#main {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+}
+
+.col1, .col2 {
+	display: flex;
+	flex-direction: column;
+}
+
+.block {
+	align-self: flex-start;
+	min-width: 200px;
+	min-height: 200px;
+	margin: 20px;
+	padding: 30px;
+
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(10px);
+}
+
+h2 {
+	font-size: 20px;
+	margin-top: -10px;
+}
+
+.block {
+	--color: #ccc;
+	--colora1: #333;
+	--colora2: #eee;
+	color: black;
+}
+
+.block .danger {
+	--color: #faa;
+	--colora1: red;
+	--colora2: #fdd;
+	color: red;
+}
+
+.block h2.danger {
+	margin-top: 20px;
+}
+
+.block br {
+	content: "";
+	display: block;
+	width: calc(100% + 60px);
+	margin: 10px 0 10px -30px;
+	height: 1px;
+	background-color: var(--color);
+}
+
+.block .line {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+}
+
+.block a {
+	padding: 5px;
+	font-weight: bold;
+
+	border: 1px solid var(--colora1);
+	border-radius: 5px;
+	background-color: var(--colora2);
+	color: var(--colora1);
+}
+
+.block a:hover {
+	background-color: var(--colora1);
+	color: white;
+}

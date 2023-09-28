@@ -1,0 +1,6 @@
+body {
+	--header-bg: #fff;
+
+	background-color: #d5d5d5;
+	background-image: url("/img/bg-dashboard.jpg");
+}

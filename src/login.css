@@ -1,0 +1,65 @@
+body {
+	--header-bg: #fff;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	background-color: #d5d5d5;
+	background-image: url("/img/bg-dashboard.jpg");
+}
+
+h1 {
+	margin-bottom: 50px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+label {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+input {
+	margin: 10px 0;
+	padding: 10px;
+	width: 100%;
+
+    font-size: 14px;
+	font-family: sf-ui;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+input[type=submit] {
+	transition: 0.2s;
+	font-weight: bold;
+	cursor: pointer;
+
+	border: none;
+	background-color: #3a3;
+	color: white;
+}
+
+input[type=submit]:hover {
+	background-color: #090;
+}
+
+.area {
+	width: 400px;
+
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	padding: 20px;
+	background-color: white;
+}
+
+div.area {
+	padding: 10px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
