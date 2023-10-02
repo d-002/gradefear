@@ -27,6 +27,11 @@
 					</div>
 					<br>
 					<div class="line">
+						<p>Terms, privacy policy</p>
+						<a href="../terms">Terms</a>
+					</div>
+					<br>
+					<div class="line">
 						<p>Log out and clear login cache</p>
 						<a href="javascript:logout()">Log out</a>
 					</div>
@@ -35,12 +40,12 @@
 						<h2 class="danger">Danger zone</h2>
 						<br>
 						<div class="line">
-							<p>Remove all cached data linked to your profile</p>
+							<p>Remove all local data linked to your profile</p>
 							<a href="javascript:clear()">Clear data</a>
 						</div>
 						<br>
 						<div class="line">
-							<p>Log out and remove all cached data</p>
+							<p>Log out and remove all local data</p>
 							<a href="javascript:clear();logout()">Clear all data</a>
 						</div>
 						<br>
@@ -52,6 +57,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		<script>init()</script>
 	</body>
 </html>

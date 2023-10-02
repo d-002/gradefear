@@ -1,6 +1,111 @@
 body {
 	--header-bg: #fff;
 
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
 	background-color: #d5d5d5;
 	background-image: url("/img/bg-dashboard.jpg");
+}
+
+h1 {
+	margin: 0;
+	margin-bottom: 50px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#main {
+	width: 400px;
+    padding: 40px;
+	padding-bottom: 30px;
+
+    border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	background-color: white;
+}
+
+form {
+	transition: 0.5s;
+	overflow: hidden;
+	max-height: 300px;
+    overflow: auto;
+	padding: 20px;
+
+    border-radius: 10px;
+    border: 1px solid #aaa;
+	background-color: white;
+}
+
+form.closed,form.done {
+	max-height: 8px;
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+form.closed {
+	background-color: #eee;
+	color: #999;
+}
+
+form.done {
+	border-color: #7a7;
+	background-color: #efe;
+    color: #7a7;
+}
+
+h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#main>p {
+	font-size: 15px;
+	display: inline;
+}
+
+#main>p#comment {
+	display: block;
+	height: 15px;
+
+	color: #0a0;
+    font-weight: bold;
+}
+
+#main>p#comment.error {
+	color: #f00;
+}
+
+label {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+input,select {
+	margin: 10px 0;
+	padding: 10px;
+	width: 100%;
+
+    font-size: 14px;
+	font-family: sf-ui;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+input[type=submit] {
+	transition: 0.2s;
+	font-weight: bold;
+	cursor: pointer;
+
+	border: 1px solid #333;
+    background-color: #eee;
+    color: black;
+}
+
+input[type=submit]:hover {
+	background-color: #ccc;
 }

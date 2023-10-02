@@ -8,25 +8,26 @@ function encode($s) {
 	return $newS;
 }
 
-function allowed($login, $path) {
+ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+
+function allowed($login, $path, $writetype) {
 	// file permissions
-	$path = basename($path);
-	if ($path == "classes") { return true; }
-	else { return false; }
+	$path = dirname($path);
+
+	if ($path == "../classes") { return true; }
+	if ((substr($path, 0, 11) == "../classes/") and (substr_count($path, "..") == 1)) { return true; }
+	return false;
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-	// don't allow manually viewing this page
-	echo '<html><meta http-equiv="refresh" content="0; url=/"></html>';
-} else {
+function main() {
 	$path = $_POST["path"];
-	$pathtype = $_POST["pathtype"];
+	$writetype = $_POST["writetype"];
 	$write = $_POST["write"];
 	$login = $_POST["login"];
 	$pwd = $_POST["pwd"];
 
 	// get the stored password
-	$file = fopen("http://gradefear.42web.io/users", "r");
+	$file = fopen("../users", "r");
 	while (!feof($file)) {
 		$line = trim(fgets($file), "\n");
 		if (empty($line)) { continue; }
@@ -39,28 +40,37 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 	}
 	fclose($file);
 
-	// compate password and check permissions to see if allowed to edit the file
+	// compare password and check permissions to see if allowed to edit the file
 	if (isset($encodedpwd)) {
-		if ($encodedpwd == encode($pwd) and allowed($login, $path)) {
-			if ($pathtype == "d") {
-				if ($mkdir) {
-					mkdir($path);
+		if ($encodedpwd == encode($pwd)) {
+			if (allowed($login, $path, $writetype)) {
+				if ($writetype == "d") {
+					if (is_dir(dirname($path))) {
+						if (!is_dir($path)) { mkdir($path); }
+						return "0";
+					}
+					return "5";
+				} else if ($writetype == "f") {
+					if (!is_numeric($write)) return "6";
+					if (file_exists($path)) { $file = fopen($path, "a"); }
+					else { $file = fopen($path, "w"); }
+					fwrite($file, $write);
+					fclose($file);
+					return "0";
 				}
-				echo "0";
-			} else if ($pathtype == "f") {
-				if (file_exists($path)) { $file = fopen($path, "a"); }
-				else { $file = fopen($path, "w"); }
-				fwrite($file, $write);
-				$fclose($file);
-				echo "0";
-			} else {
-				echo "3";
+				return "4";
 			}
-		} else {
-			echo "2";
+			return "3";
 		}
-	} else {
-		echo "1";
+		return "2";
 	}
+	return "1";
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+	// don't allow manually viewing this page
+	echo '<html><meta http-equiv="refresh" content="0; url=/"></html>';
+} else {
+	echo main();
 }
 ?>

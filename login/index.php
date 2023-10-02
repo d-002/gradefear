@@ -75,10 +75,11 @@
 			<input type="password" id="pwd" name="pwd">
 			<br>
 			<?php if ($signup) { echo '<label for="pwd2">Re-enter password</label><input type="password" id="pwd2" name="pwd2"><br>'; } ?>
-			<input type="submit" value=<?php if ($signup) { echo "Sign up"; } else { echo "Log in"; } ?>>
+			<input type="submit" value="<?php if ($signup) { echo "Sign up"; } else { echo "Log in"; } ?>">
 		</form>
 		<div class="area">
-		<?php if ($signup) { echo '<span>Already have an account?</span> <a href="/login" class="blue">Log in</a></p>'; } else { echo '<span>New to GradeFear?</span> <a href="/login?signup=1" class="blue">Sign up</a></p>'; } ?>
+		<div><?php if ($signup) { echo '<span>Already have an account?</span> <a href="/login" class="blue">Log in</a>'; } else { echo '<span>New to GradeFear?</span> <a href="/login?signup=1" class="blue">Sign up</a>'; } ?></div>
+		<?php if ($signup) { echo '<div><span>By creating an account, you agree to the <a href="../terms" class="blue">terms and conditions</a></span></div>'; } ?>
 		</div>
 	</body>
 </html>
