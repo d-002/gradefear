@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>GradeFear</title>
+		<title>Log in - GradeFear</title>
 		<link rel="stylesheet" href="../src/common.css">
 		<link rel="stylesheet" href="../src/login.css">
 		<script src="../src/login-utils.js"></script>
@@ -43,7 +43,7 @@
 				if (empty($login)) { $error .= "Username must not be empty. "; }
 				if (empty($pwd)) { $error .= "Password must not be empty. "; }
 				if (isset($foundpwd)) { $error .= "This username exists. "; }
-				if (!preg_match("/^[a-zA-Z-0-9'_]*$/",$login)) { $error = "Username contains invalid characters. "; }
+				if (!preg_match("/^[a-zA-Z-0-9'_]*$/",$login)) { $error .= "Username contains invalid characters. "; }
 
 				if (empty($error)) {
 					// successfully created account
@@ -57,7 +57,7 @@
 			}
 
 			if (empty($error)) {
-				echo 'signedIn("' . $login . '", "' . $pwd . '");';
+				echo 'signedIn("' . htmlspecialchars($login) . '", "' . htmlspecialchars($pwd) . '");';
 			}
 		} ?></script>
 	</head>

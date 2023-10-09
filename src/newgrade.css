@@ -1,6 +1,4 @@
 body {
-	--header-bg: #fff;
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

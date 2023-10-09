@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>GradeFear</title>
+		<title>New grade - GradeFear</title>
 		<link rel="stylesheet" href="../src/common.css">
 		<link rel="stylesheet" href="../src/newgrade.css">
 		<script src="../src/login-utils.js"></script>

@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>GradeFear</title>
+		<title>Terms - GradeFear</title>
 		<link rel="stylesheet" href="../src/common.css">
 		<link rel="stylesheet" href="../src/terms.css">
 	</head>
@@ -11,7 +11,7 @@
 			<h1>Terms of Service</h1>
 			<h2>Generalities</h2>
 			<p>"GradeFear" of "we" means this website and their developer.</p>
-			<p>"You" means any user of GradeFear. For the purpose of this definition, "user" means any person or machine using this website at least once and creating an account.</p>
+			<p>"You" means any user of GradeFear. For the purpose of this definition, "user" means any person or machine using this website at least once and creating an account by any means.</p>
 			<p>These conditions can be changed at any time without further notice. We encourage You to regularly read them in the event of a change in these conditions.</p>
 			<p>Creating a GradeFear Account implies the acceptance of these Terms of Service.</p>
 
@@ -26,8 +26,13 @@
 				<li>Sharing any form of viruses or malicious software</li>
 				<li>Phishing, attempting to steal other user's personal information</li>
 				<li>Corrupting GradeFear files and databases</li>
-				<li>Spamming, advertising</li>
+				<li>Spamming, advertising (excepting website staff)</li>
 			</ul>
+			
+			<h2>Submitting a grade</h2>
+			<p>In addition to the rules stated above, please make sure You are constructive when creating a test, meaning You shall only create a class or test if it actually exists, in order to make using GradeFear easier for all users.</p>
+			<p>GradeFear allows You to enter your grades to compare them with those of the rest of your class. You can add any valid grade in any test, but GradeFear has been created to guide You in discovering if You need help in a certain area, so you generally should post correct data to help You and the community using GradeFear.<p>
+			<br>
 			<p>Any non-respect of these rules can get your computer or IP banned for an indeterminate amount of time, or get your Account deleted.</p>
 
 			<h1>Privacy policy</h1>
@@ -37,7 +42,6 @@
 			<p>GradeFear uses local storage to store your data, such as recent grades and login data. You can choose to remove some or all of this data in your <a href="../dashboard" class="blue">profile</a>.</p>
 
 			<h2>About grades</h2>
-			<p>GradeFear allows You to enter your grades to compare them with those of the rest of your class. You can add any valid grade in any test, but GradeFear has been created to guide You in discovering if You need help in a certain area, so you generally should post correct data to help You and the community using GradeFear.<p>
 			<p>We do not encourage competition. Since everything is sent anonymously to the database, You should not enter data if You feel unconfortable with it, especially if You are tempted to do so because you feel weak of anxious about your capabilities.</p>
 
 			<h2>Conclusion</h2>

@@ -1,6 +1,4 @@
 body {
-	--header-bg: #fff;
-
 	background-color: #d5d5d5;
 	background-image: url("/img/bg-dashboard.jpg");
 }
@@ -60,14 +58,14 @@ h2 {
 	background-color: var(--color);
 }
 
-.block .line {
+.line {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	gap: 20px;
 }
 
-.block a {
+.block a:not(.line) {
 	padding: 5px;
 	font-weight: bold;
 
@@ -77,7 +75,42 @@ h2 {
 	color: var(--colora1);
 }
 
-.block a:hover {
+.block a:not(.line):hover {
 	background-color: var(--colora1);
 	color: white;
 }
+
+.line span {
+    padding: 2px 5px;
+    background-color: var(--bg);
+    color: white;
+	border-radius: 3px;
+}
+
+.line strong {
+	font-weight: bold;
+}
+
+canvas {
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+a.line {
+	transition: 0.4s;
+	color: black;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+a.line:hover {
+	background-color: #ddd;
+}
+
+.S { --bg: #0a7; }
+.A { --bg: #0c0; }
+.B { --bg: #bd0; }
+.C { --bg: #ed0; }
+.D { --bg: #fa0; }
+.E { --bg: #f70; }
+.F { --bg: #f00; }

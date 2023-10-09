@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>GradeFear</title>
+		<title>Dashboard - GradeFear</title>
 		<link rel="stylesheet" href="../src/common.css">
 		<link rel="stylesheet" href="../src/dashboard.css">
 		<script src="../src/login-utils.js"></script>
@@ -13,11 +13,19 @@
 		<h1>Dashboard - </h1>
 		<div id="main">
 			<div id="col1">
-				<div id="stats" class="block">
-					<h2>Grade statistics</h2>
+				<div id="last" class="block">
+					<h2>In-depth statistics</h2>
+				</div>
+				<div id="lasts" class="block">
+					<h2>Last grades</h2>
+					<p>Click on a grade to show more</p>
 				</div>
 			</div>
 			<div id="col2">
+				<div id="stats" class="block">
+					<h2>Grade statistics</h2>
+					<canvas width="400" height="150"></canvas>
+				</div>
 				<div id="tools" class="block">
 					<h2>Tools</h2>
 					<br>

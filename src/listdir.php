@@ -1,5 +1,4 @@
 <?php
-
 function main() {
 	$path = $_POST["path"];
 	$readtype = $_POST["readtype"];

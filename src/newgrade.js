@@ -89,7 +89,7 @@ function step2() {
 	}
 
 	let name = entries[2].value;
-	if (name != "" && entries[3].value != "") {
+	if (name != "" && entries[3].value != "" && entries[3].value != "0") {
 		if (!isValid(name)) return msg("Invalid test name", 1);
 		// creating a test: optionally create a folder and add a test file (needs to not exist)
 		handleWrite(dir, "d", "", () => {
@@ -126,11 +126,14 @@ function step3() {
 		return msg("Invalid previous selection", 1);
 	if (entries[4].value == "") return msg("Invalid grade", 1);
 
-	let dir = selection[0]+"/"+selection[1]+"/"+selection[2];
-	handleWrite("../classes/"+dir, "f", "\n"+entries[4].value, () => {
-		msg("Grade successfully recorded", 0);
-		localStorage.setItem(dir, entries[4].value);
-		openForm(3);
+	let path = selection[0]+"/"+selection[1]+"/"+selection[2];
+	handleWrite("../classes/"+path, "f", "\n"+entries[4].value, () => {
+		$.get({url: "../classes/"+path, success: (data) => {
+			let maxValue = parseFloat(data.split("\n")[0]);
+			msg("Grade successfully recorded", 0);
+			localStorage.setItem(path, entries[4].value+"/"+maxValue);
+			openForm(3);
+		}});
 	});
 }
 
