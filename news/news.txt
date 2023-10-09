@@ -1,0 +1,2 @@
+Launch of GradeFear;/;launch.png
+GitHub repo - bugs, feature requests;https://github.com/d-002/gradefear;github.png

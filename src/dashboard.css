@@ -28,7 +28,7 @@ body {
 }
 
 h1 {
-	margin: 30px 100px;
+	text-align: center;
 }
 
 h2 {
@@ -37,9 +37,9 @@ h2 {
 }
 
 .block {
-	--color: #ccc;
+	--color: #bcd;
 	--colora1: #333;
-	--colora2: #eee;
+	--colora2: #def;
 	color: black;
 }
 
@@ -92,10 +92,6 @@ h2 {
     background-color: var(--bg);
     color: white;
 	border-radius: 3px;
-}
-
-.line strong {
-	font-weight: bold;
 }
 
 canvas {

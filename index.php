@@ -16,6 +16,10 @@
 			<a href="login?signup=1"class="button">Sign up</a>
 			<a href="login" class="button2">Log in</a>
 		</div>
+
+		<div id="news">
+		</div>
+
 		<div id="notice">
 			<h3>Important notice</h3>
 			<p>This website allows you to enter your grades to compare them with those of the rest of your class. You obviously can add any grade anywhere, but this website has been created to allow you to roughly see if you need help in a certain area.</p>

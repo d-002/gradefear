@@ -45,14 +45,17 @@ function showStats(i) {
 		let denom = " / "+info[names[i]][0];
 		let top = parseInt(info[names[i]][2]/info[names[i]][3]*100);
 		let len = info[names[i]][3];
-		let rank = getRank(info[names[i]][2]/len - 1/len);
+		let p = lastGrades[names[i]];
+		let q = info[names[i]][0];
+		let rank1 = getRank(1 - p/q);
+		let rank2 = getRank(info[names[i]][2]/len - 1/len);
 		let comment = getComment(len);
 		let test = names[i].split("/");
 
 		[["Test", test[2]+" (class: "+test[0]+", date: "+test[1]+")"],
-		["Grade", lastGrades[names[i]]+denom],
+		["Grade", "<span class="+rank1+">"+rank1+"</span> "+p+"/"+q],
 		["Class average", info[names[i]][1]],
-		["Ranking", "<span class="+rank+">"+rank+"</span> ("+info[names[i]][2]+" / "+len+")"],
+		["Ranking", "<span class="+rank2+">"+rank2+"</span> "+info[names[i]][2]+" / "+len],
 		["Top", top+"% ("+comment+")"]].forEach((ab) => {
 			let div = document.createElement("div");
 			div.className = "line";
@@ -137,12 +140,15 @@ function fillStats() {
 		for (let i = 0; i < names.length; i++) {
 			if (i >= 5) break;
 			container.appendChild(document.createElement("br"));
-			let a = document.createElement("a");
-			let grade = lastGrades[names[i]];
+			let p = lastGrades[names[i]];
+			let q = info[names[i]][0];
+			let rank = getRank(1 - p/q);
 			let name = names[i].split("/");
+
+			let a = document.createElement("a");
 			a.className = "line";
 			a.href = "javascript:showStats("+i+")";
-			a.innerHTML = "<p>"+name[2]+" ("+name[1]+")</p><p>"+lastGrades[names[i]]+" / "+info[names[i]][0]+"</p>";
+			a.innerHTML = "<p>"+name[2]+" ("+name[1]+")</p><p><span class="+rank+">"+rank+"</span> "+p+" / "+q+"</p>";
 			container.appendChild(a);
 		}
 
@@ -150,7 +156,7 @@ function fillStats() {
 		let ctx = document.getElementsByTagName("canvas")[0].getContext("2d");
 		let colors = ["#55f", "#777", "rgba(0, 0, 0, 0.2)"]; // own, others, fill
 		ctx.lineWidth = 1;
-		ctx.font = "calibri 16";
+		ctx.font = "10px calibri";
 		for (let i = 0; i < 2; i++) {
 			ctx.strokeStyle = ctx.fillStyle = ["#333", "#a00"][i];
 			ctx.beginPath();
@@ -194,6 +200,7 @@ function fillStats() {
 		}
 
 		// chart legend
+		ctx.font = "14px calibri";
 		ctx.strokeStyle = "#aaa";
 		ctx.beginPath();
 		ctx.moveTo(0, 100);
@@ -207,7 +214,7 @@ function fillStats() {
 		ctx.lineTo(400, 150);
 		ctx.fill();
 		for (let i = 0; i < 3; i++) {
-			let x = [20, 150, 300][i];
+			let x = [30, 120, 260][i];
 			let y = 128;
 			if (i == 2) {
 				ctx.fillStyle = colors[2];
