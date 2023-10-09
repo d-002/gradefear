@@ -21,7 +21,7 @@ function handleWrite(path, writetype, write, callback=()=>{}) {
 	login = localStorage.getItem("login");
 	pwd = localStorage.getItem("pwd");
 	$.ajax({
-		url: "../src/writefile.php",
+		url: "/src/writefile.php",
 		method: "POST",
 		data: {"path": path, "writetype": writetype, "write": write, "login": login, "pwd": pwd},
 		success: (error) => {
@@ -33,7 +33,7 @@ function handleWrite(path, writetype, write, callback=()=>{}) {
 
 function listDir(path, readtype, callback=()=>{}) {
 	$.ajax({
-		url: "../src/listdir.php",
+		url: "/src/listdir.php",
 		method: "POST",
 		data: {"path": path, "readtype": readtype},
 		success: (data) => {
@@ -79,7 +79,13 @@ function step1() {
 
 function step2() {
 	function after() {
-		openForm(2);
+		$.get({
+			url: dir+"/"+selection[2],
+			success: (data) => {
+				entries[4].placeholder = "/"+data.split("\n")[0];
+				openForm(2);
+			}
+		});
 	}
 
 	let dir = "../classes/"+selection[0]+"/"+selection[1];
@@ -128,10 +134,14 @@ function step3() {
 
 	let path = selection[0]+"/"+selection[1]+"/"+selection[2];
 	handleWrite("../classes/"+path, "f", "\n"+entries[4].value, () => {
-		$.get({url: "../classes/"+path, success: (data) => {
+		$.get({url: "/classes/"+path, success: (data) => {
 			let maxValue = parseFloat(data.split("\n")[0]);
 			msg("Grade successfully recorded", 0);
-			localStorage.setItem(path, entries[4].value+"/"+maxValue);
+
+			let dict = JSON.parse(localStorage.getItem(login));
+			if (dict == null) dict = {};
+			dict[path] = entries[4].value;
+			localStorage.setItem(login, JSON.stringify(dict));
 			openForm(3);
 		}});
 	});

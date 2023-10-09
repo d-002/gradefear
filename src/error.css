@@ -1,0 +1,38 @@
+body {
+	background-color: #320203;
+	background-image: url("/img/bg-error.jpg");
+}
+
+h1 {
+	color: white;
+}
+
+h2 {
+	margin: 0 0 80px 100px;
+	font-size: 22px;
+	font-weight: 100;
+	color: white;
+}
+
+#buttons {
+	margin: 40px 100px;
+	width: 300px;
+}
+
+#buttons a {
+	transition: 0.4s;
+	display: block;
+	margin-top: 30px;
+	padding: 15px;
+	border-radius: 50px;
+
+	font-size: 18px;
+	text-align: center;
+	font-weight: 100;
+
+	background-color: #ddd;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	color: black;
+}
+
+#buttons a:hover { background-color: #ccc; }

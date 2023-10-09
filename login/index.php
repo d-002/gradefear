@@ -22,6 +22,7 @@
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$login = htmlspecialchars($_POST["login"]);
 			$pwd = $_POST["pwd"];
+			$pwd_hash = hash("sha256", encode($pwd));
 
 			$file = fopen("../users", "r");
 			while (!feof($file)) {
@@ -43,21 +44,21 @@
 				if (empty($login)) { $error .= "Username must not be empty. "; }
 				if (empty($pwd)) { $error .= "Password must not be empty. "; }
 				if (isset($foundpwd)) { $error .= "This username exists. "; }
-				if (!preg_match("/^[a-zA-Z-0-9'_]*$/",$login)) { $error .= "Username contains invalid characters. "; }
+				if (!preg_match("/^[a-zA-Z-0-9'_.-]*$/",$login)) { $error .= "Username contains invalid characters. "; }
 
 				if (empty($error)) {
 					// successfully created account
 					$file = fopen("../users", "a");
-					fwrite($file, "\n" . $login . " " . encode($pwd));
+					fwrite($file, "\n" . $login . " " . $pwd_hash);
 					fclose($file);
 				}
 			} else {
 				if (!isset($foundpwd)) { $error .= "This username doesn't exist. "; }
-				elseif (encode($pwd) != $foundpwd) { $error .= "Wrong password. "; }
+				elseif ($pwd_hash != $foundpwd) { $error .= "Wrong password. "; }
 			}
 
 			if (empty($error)) {
-				echo 'signedIn("' . htmlspecialchars($login) . '", "' . htmlspecialchars($pwd) . '");';
+				echo 'signedIn("' . $login . '", "' . encode($pwd) . '");';
 			}
 		} ?></script>
 	</head>
@@ -68,7 +69,7 @@
 		<form action=<?php if ($signup) { $add = "?signup=1"; } else { $add = ""; } echo htmlspecialchars($_SERVER["PHP_SELF"]) . $add; ?> method="POST" class="area">
 			<?php if (!empty($error)) { echo '<p class="error">' . $error . "</p>"; } ?>
 			<label for="login">Username</label>
-			<?php if ($signup) { echo '<a href="javascript:randomUser()">Generate random username</a>'; } ?>
+			<?php if ($signup) { echo '<a href="javascript:randomUser()" class="blue">Generate random username</a>'; } ?>
 			<input type="text" id="login" name="login" value=<?php echo $login; ?>>
 			<br>
 			<label for="pwd">Password</label>

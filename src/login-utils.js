@@ -1,4 +1,6 @@
 let users = {};
+let login;
+let encodedpwd;
 
 function getUsers(then) {
 	$.get("/users", function(data) {
@@ -12,21 +14,24 @@ function getUsers(then) {
 	}, 'text');
 }
 
-function encode(s) {
-	let newS = "";
-	let x = 0;
-	s.split("").forEach((char) => {newS += (x += (char.charCodeAt(0)*4477375789) % 1048576).toString()});
-	return newS;
-}
-
 function isLoggedIn() {
 	// get ID and encoded key in cookies
-	login = localStorage.getItem("login");
-	pwd = localStorage.getItem("pwd");
-	return (login != null && users[login] == encode(pwd));
+	return (login != null && users[login] == encodedpwd);
 }
 
 function initLogin(then) {
 	// get list of registered users
-	getUsers(then);
+	getUsers(() => {
+		// get login and encrypted password
+		login = localStorage.getItem("login");
+		$.ajax({
+			url: "/src/encodepwd.php",
+			method: "POST",
+			data: {"pwd": localStorage.getItem("pwd")},
+			success: (data) => {
+				encodedpwd = data;
+				then();
+			}
+		});
+	});
 }

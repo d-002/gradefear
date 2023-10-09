@@ -48,7 +48,7 @@
 			<form action="javascript:step3()" class="closed">
 				<h2>Step 3 - enter your grade</h2>
 				<p>Add a grade:</p>
-				<input type="number" step="0.01" min="0" max="1000000" id="grade" placeholder="20">
+				<input type="number" step="0.01" min="0" max="1000000" id="grade">
 				<input type="submit" value="Submit">
 			</form>
 			<form action="../dashboard" class="closed">

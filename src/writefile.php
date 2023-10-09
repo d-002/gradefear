@@ -1,13 +1,4 @@
 <?php
-function encode($s) {
-	$newS = "";
-	$x = 0;
-	foreach(str_split($s) as $char) {
-		$newS .= ($x += strval(ord($char)*4477375789) % 1048576);
-	}
-	return $newS;
-}
-
 function allowed($login, $path, $writetype) {
 	// file permissions
 	$path = dirname($path);
@@ -40,7 +31,7 @@ function main() {
 
 	// compare password and check permissions to see if allowed to edit the file
 	if (isset($encodedpwd)) {
-		if ($encodedpwd == encode($pwd)) {
+		if ($encodedpwd == hash("sha256", $pwd)) {
 			if (allowed($login, $path, $writetype)) {
 				if ($writetype == "d") {
 					if (is_dir(dirname($path))) {

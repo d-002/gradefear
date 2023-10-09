@@ -35,6 +35,11 @@
 					</div>
 					<br>
 					<div class="line">
+						<p>Dark theme</p>
+						<a href="#">Upcoming</a>
+					</div>
+					<br>
+					<div class="line">
 						<p>Terms, privacy policy</p>
 						<a href="../terms">Terms</a>
 					</div>
@@ -49,12 +54,7 @@
 						<br>
 						<div class="line">
 							<p>Remove all local data linked to your profile</p>
-							<a href="javascript:clear()">Clear data</a>
-						</div>
-						<br>
-						<div class="line">
-							<p>Log out and remove all local data</p>
-							<a href="javascript:clear();logout()">Clear all data</a>
+							<a href="javascript:clear(); document.location.reload()">Clear data</a>
 						</div>
 						<br>
 						<div class="line">

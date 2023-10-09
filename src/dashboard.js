@@ -1,4 +1,4 @@
-let lastGrades, info;
+let lastGrades, info, names;
 
 function logout() {
 	localStorage.removeItem("login");
@@ -7,12 +7,7 @@ function logout() {
 }
 
 function clear() {
-	let keys = Object.keys(localStorage);
-	for (let i = 0; i < keys.length; i++) {
-		if (keys[i] != "login" && keys[i] != "pwd") {
-			localStorage.removeItem(keys[i]);
-		}
-	}
+	localStorage.removeItem(login);
 }
 
 function deleteProfile() {
@@ -41,8 +36,6 @@ function showStats(i) {
 	let container = document.getElementById("last");
 	while (container.children.length > 1) container.lastChild.remove();
 
-	let names = Object.keys(lastGrades);
-
 	if (i >= names.length) {
 		let p = document.createElement("p");
 		p.innerHTML = "Nothing to display yet.";
@@ -52,7 +45,7 @@ function showStats(i) {
 		let denom = " / "+info[names[i]][0];
 		let top = parseInt(info[names[i]][2]/info[names[i]][3]*100);
 		let len = info[names[i]][3];
-		let rank = getRank(info[names[i]][2]/len);
+		let rank = getRank(info[names[i]][2]/len - 1/len);
 		let comment = getComment(len);
 		let test = names[i].split("/");
 
@@ -81,8 +74,8 @@ function getRank(x) {
 }
 
 function getComment(len) {
-	if (len < 5) return "very unprecise";
-	if (len < 10) return "unprecise";
+	if (len < 5) return "<strong>very unprecise<strong>";
+	if (len < 10) return "<strong>unprecise<strong>";
 	if (len < 20) return "moderately precise";
 	if (len < 30) return "precise";
 	return "very precise";
@@ -94,7 +87,7 @@ function fillStats() {
 			callback();
 		} else {
 			let name = queue.pop(0);
-			$.get({url: "../classes/"+name, success: (data) => {
+			$.get({url: "/classes/"+name, success: (data) => {
 				data = data.split("\n");
 				let len = data.length-1;
 				let average = 0;
@@ -171,29 +164,31 @@ function fillStats() {
 		let prevY, y; // [grade, average, min, max]
 		for (let i = 0; i < names.length; i++) {
 			if (i >= 20) break;
-			let x = 400-20*i;
+			let x = 395-19*i;
 			I = info[names[i]];
 			let m = 80/I[0];
 			y = [100-lastGrades[names[i]]*m, 100-I[1]*m, 100-I[4]*m, 100-I[5]*m];
-			console.log(y);
-			if (prevY != null) {
-				let _x = x+20;
-				ctx.strokeStyle = colors[1];
-				ctx.beginPath();
-				ctx.moveTo(_x, prevY[2]);
-				ctx.lineTo(x, y[2]);
-				ctx.lineTo(x, y[3]);
-				ctx.lineTo(_x, prevY[3]);
-				ctx.closePath();
-				ctx.fill();
 
-				for (let j = 1; j >= 0; j--) {
-					ctx.strokeStyle = colors[j];
-					ctx.beginPath();
-					ctx.moveTo(_x, prevY[j]);
-					ctx.lineTo(x, y[j]);
-					ctx.stroke();
-				}
+			let _x;
+			if (prevY == null) {
+				prevY = y;
+				_x = x+5;
+			} else _x = x+19;
+
+			ctx.strokeStyle = colors[1];
+			ctx.beginPath();
+			ctx.moveTo(_x, prevY[2]);
+			ctx.lineTo(x, y[2]);
+			ctx.lineTo(x, y[3]);
+			ctx.lineTo(_x, prevY[3]);
+			ctx.fill();
+
+			for (let j = 1; j >= 0; j--) {
+				ctx.strokeStyle = colors[j];
+				ctx.beginPath();
+				ctx.moveTo(_x, prevY[j]);
+				ctx.lineTo(x, y[j]);
+				ctx.stroke();
 			}
 			prevY = y;
 		}
@@ -204,9 +199,16 @@ function fillStats() {
 		ctx.moveTo(0, 100);
 		ctx.lineTo(400, 100);
 		ctx.stroke();
+		ctx.fillStyle = "#eee";
+		ctx.beginPath();
+		ctx.moveTo(0, 150);
+		ctx.lineTo(0, 100);
+		ctx.lineTo(400, 100);
+		ctx.lineTo(400, 150);
+		ctx.fill();
 		for (let i = 0; i < 3; i++) {
 			let x = [20, 150, 300][i];
-			let y = 125;
+			let y = 128;
 			if (i == 2) {
 				ctx.fillStyle = colors[2];
 				ctx.beginPath();
@@ -214,7 +216,6 @@ function fillStats() {
 				ctx.lineTo(x+20, y);
 				ctx.lineTo(x+20, y-7);
 				ctx.lineTo(x, y-7);
-				ctx.closePath();
 				ctx.fill();
 			} else {
 				ctx.strokeStyle = colors[i];
@@ -230,11 +231,13 @@ function fillStats() {
 
 	// get grades from localStorage
 	lastGrades = {};
-	Object.keys(localStorage).forEach((key) => {
+	let storage = JSON.parse(localStorage.getItem(login));
+	if (storage == null) storage = {};
+	Object.keys(storage).forEach((key) => {
 		if (key == "login" || key == "pwd") return;
-		lastGrades[key] = parseNumber(localStorage[key]);
+		lastGrades[key] = parseNumber(storage[key]);
 	});
-	let names = Object.keys(lastGrades);
+	names = Object.keys(lastGrades);
 
 	// get grades info (max grade, average, number of entries)
 	// recursively and asynchronously whyyyy

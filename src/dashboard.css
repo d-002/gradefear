@@ -22,8 +22,13 @@ body {
 	padding: 30px;
 
 	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	background-color: rgba(255, 255, 255, 0.5);
 	backdrop-filter: blur(10px);
+}
+
+h1 {
+	margin: 30px 100px;
 }
 
 h2 {
@@ -68,6 +73,8 @@ h2 {
 .block a:not(.line) {
 	padding: 5px;
 	font-weight: bold;
+    min-width: 100px;
+    text-align: center;
 
 	border: 1px solid var(--colora1);
 	border-radius: 5px;
@@ -104,7 +111,7 @@ a.line {
 }
 
 a.line:hover {
-	background-color: #ddd;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 .S { --bg: #0a7; }

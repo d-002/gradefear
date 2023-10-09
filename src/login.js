@@ -16,5 +16,5 @@ function randomUser() {
 function signedIn(login, pwd) {
 	localStorage.setItem("login", login);
 	localStorage.setItem("pwd", pwd); // sorry, not encoded (I mean, it's local storage, this acts as a private key)
-	document.location.href = "../dashboard";
+	document.location.href = "/dashboard";
 }
