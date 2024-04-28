@@ -1,6 +1,6 @@
 <div id="header">
 			<div>
-				<a href="/"><img src="/img/icon-home.png"></a>
+				<a href="/"><img src="/img/icon-home.png" /></a>
 				<strong>GradeFear</strong>
 			</div>
 			<div></div>
@@ -22,3 +22,4 @@
 			}
 			</script>
 		</div>
+<?php>
