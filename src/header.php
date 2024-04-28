@@ -22,4 +22,4 @@
 			}
 			</script>
 		</div>
-<?php>
+<?php?>
